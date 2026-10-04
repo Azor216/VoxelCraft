@@ -12,10 +12,14 @@ Voxelová survival hra fungující jako samostatný `index.html`. Singleplayer a
 
 Server podporuje až 8 hráčů v jedné místnosti. Hostitel sdílí seed a úpravy bloků, zatímco inventář, zdraví a hlad zůstávají každému hráči vlastní.
 
-## WebRTC bez serveru
+### Přechod z GitHub Pages
+
+Na GitHub Pages klikni na **Otevřít LAN verzi**. Hostitel zadá `localhost:8080`, ostatní hráči zadají LAN adresu vypsanou hostitelovým serverem, například `192.168.1.20:8080`. Prohlížeč otevře stejnou hru přímo z lokálního serveru, kde funguje automatická lobby i krátké WebRTC kódy.
+
+## WebRTC připojení
 
 1. Hostitel klikne na **Vytvořit nabídku** a pošle vzniklý kód druhému hráči.
 2. Druhý hráč vloží kód, klikne na **Přijmout nabídku** a pošle hostiteli vytvořenou odpověď.
 3. Hostitel vloží odpověď a klikne na **Přijmout odpověď**.
 
-WebRTC režim je určený pro dva hráče ve stejné síti a nepotřebuje lokální server.
+Při spuštění přes LAN server mají nabídka i odpověď pouze 6 znaků a platí 5 minut. Bez serveru režim stále funguje přes `file://` nebo GitHub Pages, ale kód musí obsahovat celý technický popis spojení, a proto je výrazně delší.

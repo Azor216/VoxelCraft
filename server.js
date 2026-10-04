@@ -9,6 +9,7 @@ const host = process.env.HOST || "0.0.0.0";
 const capacity = 8;
 const clients = new Map();
 const rooms = new Map();
+const signals = new Map();
 let nextClientId = 1;
 
 const publicFiles = new Map([
@@ -105,10 +106,46 @@ function createRoomId() {
   return id;
 }
 
+function createSignalCode() {
+  let code;
+  do code = Math.random().toString(36).slice(2, 8).toUpperCase();
+  while (signals.has(code));
+  return code;
+}
+
+function cleanExpiredSignals() {
+  const now = Date.now();
+  for (const [code, signal] of signals) if (signal.expiresAt <= now) signals.delete(code);
+}
+
 function handlePacket(client, packet) {
   if (!packet || typeof packet.type !== "string") return;
   if (packet.type === "list") {
     send(client, { type: "rooms", rooms: roomList() });
+    return;
+  }
+  if (packet.type === "signalStore") {
+    cleanExpiredSignals();
+    const serialized = JSON.stringify(packet.payload);
+    if (!packet.payload || serialized.length > 200000) {
+      send(client, { type: "signalError", requestId: packet.requestId, message: "Signalizační data jsou neplatná." });
+      return;
+    }
+    const code = createSignalCode();
+    signals.set(code, { payload: packet.payload, expiresAt: Date.now() + 5 * 60 * 1000 });
+    send(client, { type: "signalStored", requestId: packet.requestId, code });
+    return;
+  }
+  if (packet.type === "signalLoad") {
+    cleanExpiredSignals();
+    const code = cleanText(packet.code, "", 6).toUpperCase();
+    const signal = signals.get(code);
+    if (!signal) {
+      send(client, { type: "signalError", requestId: packet.requestId, message: "Kód neexistuje nebo vypršel." });
+      return;
+    }
+    signals.delete(code);
+    send(client, { type: "signalLoaded", requestId: packet.requestId, payload: signal.payload });
     return;
   }
   if (packet.type === "host") {
