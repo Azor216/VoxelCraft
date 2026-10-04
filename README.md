@@ -14,7 +14,9 @@ Server podporuje až 8 hráčů v jedné místnosti. Hostitel sdílí seed a úp
 
 ### Přechod z GitHub Pages
 
-Na GitHub Pages klikni na **Otevřít LAN verzi**. Hostitel zadá `localhost:8080`, ostatní hráči zadají LAN adresu vypsanou hostitelovým serverem, například `192.168.1.20:8080`. Prohlížeč otevře stejnou hru přímo z lokálního serveru, kde funguje automatická lobby i krátké WebRTC kódy.
+Na GitHub Pages klikni na **Spustit / připojit LAN**. Hostitel zadá `localhost:8080`; ostatní hráči zadají LAN adresu vypsanou serverem, například `192.168.1.20:8080`. Hra se otevře přímo z lokálního serveru, kde funguje automatická lobby i krátké WebRTC kódy.
+
+Prohlížeč nedovoluje HTTPS stránce z GitHub Pages připojit se přímo k nezabezpečenému LAN WebSocketu. Přechod na lokální adresu toto bezpečnostní omezení řeší.
 
 ## WebRTC připojení
 
