@@ -10,12 +10,13 @@ html,body{margin:0;height:100%;overflow:hidden;background:#87ceeb;font-family:sy
 #health,#hunger{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:2px;padding:4px 7px;background:#0008;border-radius:7px}#health{bottom:84px}#hunger{bottom:114px}.health-heart,.hunger-point{width:19px;font-size:22px;line-height:1;text-align:center;text-shadow:0 2px 2px #000}.health-heart{color:#e43b36}.health-heart.empty{color:#481817}.health-heart.half{color:transparent;background:linear-gradient(90deg,#e43b36 50%,#481817 50%);background-clip:text;-webkit-background-clip:text}.hunger-point{color:#d88932}.hunger-point.empty{color:#49301d}.hunger-point.half{color:transparent;background:linear-gradient(90deg,#d88932 50%,#49301d 50%);background-clip:text;-webkit-background-clip:text}#damageFlash{position:absolute;inset:0;background:#d71919;opacity:0;transition:opacity .25s;z-index:4}#damageFlash.active{opacity:.3;transition:none}#deathNotice{position:absolute;top:31%;left:50%;transform:translate(-50%,-50%);display:none;padding:12px 20px;border-radius:10px;background:#190000d9;color:#ffdddd;font-size:27px;font-weight:800;text-shadow:0 2px 2px #000;z-index:4}
 #start{pointer-events:auto;position:absolute;inset:0;display:grid;place-items:center;background:#15202be8;z-index:5}
 #panel{width:min(620px,88vw);max-height:82vh;overflow:auto;background:#1c2d3bf2;border:2px solid #ffffff55;padding:28px;border-radius:18px;text-align:center;box-shadow:0 18px 60px #0008}button{font:700 16px system-ui;padding:10px 18px;border:0;border-radius:8px;background:#6fc244;color:#10230a;cursor:pointer}.menu-screen[hidden]{display:none}.menu-screen h1{font-size:42px;margin:0 0 8px}.menu-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.secondary{background:#b9ccd7;color:#17242c}.danger{background:#d9655c;color:white}.new-world{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin:22px 0}.new-world input{min-width:0;padding:10px;border:1px solid #ffffff55;border-radius:7px;background:#0d1820;color:white;font:inherit}.world-list{display:grid;gap:8px;text-align:left}.world-card{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:#0006;border:1px solid #ffffff44;padding:12px;border-radius:9px}.world-card.active{border-color:#8de35f}.world-card strong,.world-card small{display:block}.world-card small{color:#bcd0db;margin-top:3px}.pause-actions{display:grid;gap:10px;max-width:280px;margin:22px auto 0}
+.multiplayer{margin-top:22px;padding-top:18px;border-top:1px solid #ffffff44}.multiplayer h2{margin:0 0 6px}.multiplayer input,.multiplayer textarea{box-sizing:border-box;width:100%;padding:9px;border:1px solid #ffffff55;border-radius:7px;background:#0d1820;color:white;font:inherit}.multiplayer textarea{height:74px;resize:vertical;margin:8px 0}.multiplayer-status{min-height:20px;margin:7px 0;color:#cfe3ed;font-size:13px}.lan-rooms{display:grid;gap:6px;margin:8px 0}.lan-room{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px;background:#0005;border-radius:7px;text-align:left}.lan-room small{display:block;color:#bcd0db}.network-online{color:#8de35f}
 #hotbar{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:6px}.slot{position:relative;width:52px;height:52px;border:3px solid #ffffff88;background:#0009;border-radius:5px;display:grid;place-items:center;font-size:11px;text-align:center;text-shadow:0 1px 2px #000;box-sizing:border-box}.slot.active{border-color:white;transform:translateY(-5px)}.slot.drag-over{background:#ffffff44}.slot-number{position:absolute;left:2px;top:0;color:#fff9}.swatch{width:25px;height:25px;border:1px solid #fff8}
 #touchControls,.touch-only{display:none}#touchControls{position:absolute;inset:0;z-index:3;pointer-events:none;touch-action:none;user-select:none;-webkit-user-select:none}.touch-device #touchControls{display:block}.touch-device canvas{touch-action:none}.touch-device #hotbar{pointer-events:auto}.touch-device .touch-only{display:inline-block}#movePad{pointer-events:auto;position:absolute;left:18px;bottom:82px;width:116px;height:116px;border:2px solid #ffffff88;border-radius:50%;background:#0005;touch-action:none}#moveKnob{position:absolute;left:36px;top:36px;width:44px;height:44px;border-radius:50%;background:#ffffffaa;box-shadow:0 2px 8px #0008}.touch-actions{position:absolute;right:16px;bottom:80px;display:grid;grid-template-columns:repeat(2,64px);gap:9px;pointer-events:auto}.touch-action,#touchPause{width:64px;height:58px;padding:3px;border:2px solid #ffffff99;border-radius:16px;background:#17232dcc;color:white;font-size:25px;line-height:1;touch-action:none;text-shadow:0 1px 2px #000}.touch-action span{display:block;font-size:9px;margin-top:3px}#touchMine{height:68px;background:#8d3f32dd}#touchPlace{height:68px;background:#36753ddd}#touchPause{pointer-events:auto;position:absolute;right:14px;top:12px;width:48px;height:42px;font-size:18px}.slot.touch-picked{border-color:#ffd45d;background:#4b3b16}
 #inventory{pointer-events:auto;position:absolute;z-index:2;inset:0;display:none;place-items:center;background:#101820b8}#inventory.open{display:grid}#inventoryPanel{position:relative;width:min(900px,90vw);max-height:80vh;overflow:auto;background:#1c2d3bf2;border:2px solid #ffffff66;padding:22px;border-radius:14px;box-shadow:0 18px 60px #000b}#closeInventory{position:absolute;right:12px;top:10px;padding:7px 11px;font-size:13px}#inventoryPanel h2{margin:0 0 6px}#inventoryPanel p{margin:0 0 18px;color:#d8e7ef}.inventory-layout{display:grid;grid-template-columns:minmax(320px,1fr) 280px;gap:24px}.inventory-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:10px;align-content:start}.inventory-item{position:relative;background:#0007;border:2px solid #ffffff66;border-radius:8px;padding:10px 6px;text-align:center;cursor:pointer}.inventory-item.empty{opacity:.55}.inventory-item.selected{border-color:#ffd45d;background:#4b3b1666}.inventory-count{position:absolute;right:5px;bottom:3px;font-weight:800}.inventory-item .swatch{width:40px;height:40px;margin:0 auto 5px}.inventory-item:active{cursor:grabbing}.inventory-open #hotbar{pointer-events:auto;z-index:3}.inventory-open #touchControls{display:none}#crafting,#furnacePanel{background:#0005;padding:14px;border-radius:10px}#crafting[hidden],#furnacePanel[hidden]{display:none}#crafting h3,#furnacePanel h3{margin:0 0 12px}.craft-row,.recipe-row,.furnace-row{display:flex;align-items:center;justify-content:center;gap:12px}.craft-grid,.recipe-grid{display:grid;grid-template-columns:repeat(var(--craft-size),52px);gap:5px}.craft-slot,.recipe-slot,#craftOutput,.recipe-output,.furnace-slot{position:relative;width:52px;height:52px;border:2px solid #ffffff88;background:#17232dcc;color:white;border-radius:5px;display:grid;place-items:center;padding:2px;box-sizing:border-box}.craft-slot.filled,.furnace-slot.filled{cursor:pointer}#craftOutput:not(:disabled){cursor:pointer;border-color:#ffd45d;background:#4b3b16}.craft-arrow{font-size:28px}#recipeViewer{margin-top:14px;padding-top:12px;border-top:1px solid #ffffff44}#recipeViewer h4{margin:0 0 9px}.recipe-output{border-color:#ffd45d}.recipe-note{font-size:12px;color:#cdd9df;margin-top:8px}#recipeHint{font-size:12px;color:#cdd9df;margin-top:12px;line-height:1.45}.furnace-stack{display:grid;gap:16px}.furnace-count{position:absolute;right:3px;bottom:1px;font-weight:800}.furnace-status{font-size:12px;color:#cdd9df;margin-top:12px}.meter{width:70px;height:8px;background:#0009;border:1px solid #ffffff88;margin-top:4px}.meter>div{height:100%;width:0;background:#ff9d2e}.smelt-meter>div{background:#ffd45d}@media(max-width:700px){.inventory-layout{grid-template-columns:1fr}.touch-device #info{font-size:10px;padding:6px;max-width:52vw}.touch-device #hotbar{bottom:8px;gap:2px}.touch-device .slot{width:40px;height:44px;border-width:2px;font-size:8px}.touch-device .slot .swatch{width:20px;height:20px}.touch-device #health{bottom:57px}.touch-device #hunger{bottom:84px}.new-world{grid-template-columns:1fr}.menu-screen h1{font-size:32px}}@media(max-width:420px){.touch-device .slot{width:34px}.touch-device #hotbar{max-width:98vw;overflow-x:auto}.touch-actions{grid-template-columns:repeat(2,56px)}.touch-action{width:56px}.inventory-grid{grid-template-columns:repeat(auto-fill,minmax(70px,1fr))}}
 #tradePanel{background:#0005;padding:14px;border-radius:10px}#tradePanel[hidden]{display:none}#tradePanel h3{margin:0 0 5px}#tradeProfession{font-size:12px;color:#cdd9df;margin-bottom:10px}.trade-list{display:grid;gap:8px}.trade-offer{display:grid;grid-template-columns:1fr auto 1fr;gap:7px;align-items:center;padding:7px;background:#10202acc;border:1px solid #ffffff44;border-radius:7px}.trade-item{display:flex;align-items:center;gap:5px;font-size:11px}.trade-item .swatch{flex:0 0 auto}.trade-offer button{grid-column:1/-1;padding:6px;font-size:12px}.trade-offer button:disabled{filter:grayscale(1);opacity:.45;cursor:not-allowed}
 </style>
-</head><body><div id="ui"><div id="damageFlash"></div><div id="deathNotice"></div><div id="cross">+</div><div id="breakBar"><div id="breakProgress"></div></div><div id="info">WASD pohyb · Mezerník skok · Shift běh · E inventář<br>Drž levé tlačítko pro těžbu · Pravé pokládá/používá/jí<br><span id="saveState">Svět uložen</span> · <span id="chunkState"></span><br><span id="toolState">Ruka</span></div><div id="hunger"></div><div id="health"></div><div id="hotbar"></div><div id="touchControls"><button id="touchPause" aria-label="Pauza">Ⅱ</button><div id="movePad"><div id="moveKnob"></div></div><div class="touch-actions"><button id="touchJump" class="touch-action">↑<span>Skok</span></button><button id="touchInventory" class="touch-action">▦<span>Inventář</span></button><button id="touchMine" class="touch-action">⛏<span>Těžit</span></button><button id="touchPlace" class="touch-action">＋<span>Položit / použít</span></button></div></div><div id="inventory"><div id="inventoryPanel"><button id="closeInventory" class="touch-only">Zavřít</button><h2 id="inventoryTitle">Inventář a crafting 2×2</h2><p>Kliknutím zobraz recept. Přetažením vlož předmět do hotbaru nebo mřížky.</p><div class="inventory-layout"><div class="inventory-grid"></div><div id="crafting"><h3 id="craftTitle">Crafting 2×2</h3><div class="craft-row"><div id="craftGrid" class="craft-grid"></div><div class="craft-arrow">→</div><button id="craftOutput" disabled></button></div><div id="recipeHint"></div><div id="recipeViewer"><h4>Kniha receptů</h4><div class="recipe-note">Klikni na předmět v inventáři.</div></div></div><div id="furnacePanel" hidden><h3>Pec</h3><div class="furnace-row"><div class="furnace-stack"><div id="furnaceInput" class="furnace-slot"></div><div id="furnaceFuel" class="furnace-slot"></div></div><div><div>🔥</div><div class="meter"><div id="fuelProgress"></div></div><div class="craft-arrow">→</div><div class="meter smelt-meter"><div id="smeltProgress"></div></div></div><div id="furnaceOutput" class="furnace-slot"></div></div><div id="furnaceStatus" class="furnace-status"></div></div><div id="tradePanel" hidden><h3 id="tradeTitle">Obchodování</h3><div id="tradeProfession"></div><div id="tradeList" class="trade-list"></div></div></div></div></div><div id="start"><div id="panel"><div id="mainMenu" class="menu-screen"><h1>VOXEL FRONTIER</h1><p>Vyber nebo vytvoř svět. Každý má vlastní seed a uložený postup.</p><div class="new-world"><input id="worldName" maxlength="32" placeholder="Název světa"><input id="worldSeed" maxlength="40" placeholder="Seed (volitelný)"><button id="createWorld">Vytvořit</button></div><div id="worldList" class="world-list"></div></div><div id="pauseMenu" class="menu-screen" hidden><h1>PAUZA</h1><p id="pauseWorldName"></p><div class="pause-actions"><button id="resumeGame">Pokračovat</button><button id="returnToMenu" class="secondary">Hlavní menu</button></div></div></div></div></div>
+</head><body><div id="ui"><div id="damageFlash"></div><div id="deathNotice"></div><div id="cross">+</div><div id="breakBar"><div id="breakProgress"></div></div><div id="info">WASD pohyb · Mezerník skok · Shift běh · E inventář<br>Drž levé tlačítko pro těžbu · Pravé pokládá/používá/jí<br><span id="saveState">Svět uložen</span> · <span id="chunkState"></span><br><span id="toolState">Ruka</span> · <span id="networkState">Singleplayer</span></div><div id="hunger"></div><div id="health"></div><div id="hotbar"></div><div id="touchControls"><button id="touchPause" aria-label="Pauza">Ⅱ</button><div id="movePad"><div id="moveKnob"></div></div><div class="touch-actions"><button id="touchJump" class="touch-action">↑<span>Skok</span></button><button id="touchInventory" class="touch-action">▦<span>Inventář</span></button><button id="touchMine" class="touch-action">⛏<span>Těžit</span></button><button id="touchPlace" class="touch-action">＋<span>Položit / použít</span></button></div></div><div id="inventory"><div id="inventoryPanel"><button id="closeInventory" class="touch-only">Zavřít</button><h2 id="inventoryTitle">Inventář a crafting 2×2</h2><p>Kliknutím zobraz recept. Přetažením vlož předmět do hotbaru nebo mřížky.</p><div class="inventory-layout"><div class="inventory-grid"></div><div id="crafting"><h3 id="craftTitle">Crafting 2×2</h3><div class="craft-row"><div id="craftGrid" class="craft-grid"></div><div class="craft-arrow">→</div><button id="craftOutput" disabled></button></div><div id="recipeHint"></div><div id="recipeViewer"><h4>Kniha receptů</h4><div class="recipe-note">Klikni na předmět v inventáři.</div></div></div><div id="furnacePanel" hidden><h3>Pec</h3><div class="furnace-row"><div class="furnace-stack"><div id="furnaceInput" class="furnace-slot"></div><div id="furnaceFuel" class="furnace-slot"></div></div><div><div>🔥</div><div class="meter"><div id="fuelProgress"></div></div><div class="craft-arrow">→</div><div class="meter smelt-meter"><div id="smeltProgress"></div></div></div><div id="furnaceOutput" class="furnace-slot"></div></div><div id="furnaceStatus" class="furnace-status"></div></div><div id="tradePanel" hidden><h3 id="tradeTitle">Obchodování</h3><div id="tradeProfession"></div><div id="tradeList" class="trade-list"></div></div></div></div></div><div id="start"><div id="panel"><div id="mainMenu" class="menu-screen"><h1>VOXEL FRONTIER</h1><p>Vyber nebo vytvoř svět. Každý má vlastní seed a uložený postup.</p><div class="new-world"><input id="worldName" maxlength="32" placeholder="Název světa"><input id="worldSeed" maxlength="40" placeholder="Seed (volitelný)"><button id="createWorld">Vytvořit</button></div><div id="worldList" class="world-list"></div><div class="multiplayer"><h2>LAN multiplayer</h2><p>Host sdílí seed a úpravy světa. Každý hráč má vlastní inventář.</p><input id="playerName" maxlength="20" placeholder="Jméno hráče"><div class="menu-actions"><button id="hostLan">Hostovat LAN</button><button id="refreshLan" class="secondary">Obnovit lobby</button></div><div id="lanRooms" class="lan-rooms"></div><div id="multiplayerStatus" class="multiplayer-status">Pro automatickou lobby spusť LAN server.</div><h3>WebRTC bez serveru</h3><div class="menu-actions"><button id="createOffer">Vytvořit nabídku</button><button id="acceptOffer" class="secondary">Přijmout nabídku</button><button id="acceptAnswer" class="secondary">Přijmout odpověď</button></div><textarea id="signalCode" placeholder="Sem vlož nabídku nebo odpověď. Vytvořený kód pošli druhému hráči."></textarea></div></div><div id="pauseMenu" class="menu-screen" hidden><h1>PAUZA</h1><p id="pauseWorldName"></p><p id="pauseNetworkState">Singleplayer</p><div class="pause-actions"><button id="resumeGame">Pokračovat</button><button id="disconnectMultiplayer" class="danger" hidden>Odpojit multiplayer</button><button id="returnToMenu" class="secondary">Hlavní menu</button></div></div></div></div></div>
 <script>
 (() => {
   // ../../Users/Blackhex/.copilot/session-state/3af2f5ce-7464-4db4-b05e-33ca61179198/files/voxel-bundle/three.core.js
@@ -28970,12 +28971,13 @@ void main() {
   var dropGroup = new Group();
   var animalGroup = new Group();
   var villagerGroup = new Group();
+  var remotePlayerGroup = new Group();
   var drops = [];
   var animals = [];
   var villagers = [];
   var animalChunks = /* @__PURE__ */ new Set();
   var villagerChunks = /* @__PURE__ */ new Set();
-  scene.add(group, dropGroup, animalGroup, villagerGroup);
+  scene.add(group, dropGroup, animalGroup, villagerGroup, remotePlayerGroup);
   var key = (x, y, z) => `${x}|${y}|${z}`;
   var neighbors = [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]];
   var matrix = new Matrix4();
@@ -29025,7 +29027,7 @@ void main() {
     saveState.textContent = "Ukl\xE1d\xE1m\u2026";
     clearTimeout(saveTimer);
     saveTimer = setTimeout(() => {
-      localStorage.setItem(SAVE_KEY, JSON.stringify(edits));
+      if (!multiplayer?.active || multiplayer.isHost) localStorage.setItem(SAVE_KEY, JSON.stringify(edits));
       saveState.textContent = "Sv\u011Bt ulo\u017Een";
     }, 120);
   }
@@ -29041,6 +29043,7 @@ void main() {
     if (record) {
       saveEdit(x, y, z, type);
       rebuildMeshes();
+      broadcastBlockEdit(x, y, z, type);
     }
     return true;
   }
@@ -29065,6 +29068,7 @@ void main() {
       if (shouldDrop) spawnDrop(b);
       saveEdit(x, y, z, null);
       rebuildMeshes();
+      broadcastBlockEdit(x, y, z, null);
     }
     return true;
   }
@@ -29626,6 +29630,453 @@ void main() {
   var touchMoveX = 0;
   var touchMoveForward = 0;
   var gameStarted = false;
+  var networkState = document.querySelector("#networkState");
+  var multiplayerStatus = document.querySelector("#multiplayerStatus");
+  var pauseNetworkState = document.querySelector("#pauseNetworkState");
+  var signalCode = document.querySelector("#signalCode");
+  var playerNameInput = document.querySelector("#playerName");
+  var lanRooms = document.querySelector("#lanRooms");
+  var remotePlayers = /* @__PURE__ */ new Map();
+  var incomingChunks = /* @__PURE__ */ new Map();
+  var multiplayer = {
+    active: false,
+    mode: null,
+    isHost: false,
+    id: null,
+    roomId: null,
+    socket: null,
+    peer: null,
+    channel: null,
+    lastPlayerSend: 0
+  };
+  playerNameInput.value = localStorage.getItem("voxel-frontier-player-name-v1") || `Hráč${Math.floor(Math.random() * 900 + 100)}`;
+  function playerName() {
+    const name = playerNameInput.value.trim().slice(0, 20) || "Hráč";
+    playerNameInput.value = name;
+    localStorage.setItem("voxel-frontier-player-name-v1", name);
+    return name;
+  }
+  function setMultiplayerStatus(message, connected = false) {
+    multiplayerStatus.textContent = message;
+    multiplayerStatus.classList.toggle("network-online", connected);
+    networkState.textContent = connected ? `${multiplayer.mode === "lan" ? "LAN" : "WebRTC"} · ${message}` : "Singleplayer";
+    networkState.classList.toggle("network-online", connected);
+    pauseNetworkState.textContent = connected ? networkState.textContent : "Singleplayer";
+    document.querySelector("#disconnectMultiplayer").hidden = !connected;
+  }
+  function encodeSignal(value) {
+    const bytes = new TextEncoder().encode(JSON.stringify(value));
+    let binary = "";
+    for (const byte of bytes) binary += String.fromCharCode(byte);
+    return btoa(binary);
+  }
+  function decodeSignal(value) {
+    const binary = atob(value.trim());
+    const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
+    return JSON.parse(new TextDecoder().decode(bytes));
+  }
+  function waitForIce(peer) {
+    if (peer.iceGatheringState === "complete") return Promise.resolve();
+    return new Promise((resolve) => {
+      const timeout = setTimeout(resolve, 4e3);
+      peer.addEventListener("icegatheringstatechange", () => {
+        if (peer.iceGatheringState !== "complete") return;
+        clearTimeout(timeout);
+        resolve();
+      });
+    });
+  }
+  function createRemotePlayer(id, name = "Hráč") {
+    if (remotePlayers.has(id)) return remotePlayers.get(id);
+    const avatar = new Group();
+    const color = new Color().setHSL((Math.abs([...id].reduce((sum, character) => sum + character.charCodeAt(0), 0)) % 360) / 360, 0.65, 0.48);
+    const bodyMaterial = new MeshLambertMaterial({ color });
+    const skinMaterial = new MeshLambertMaterial({ color: 0xd9a678 });
+    const darkMaterial = new MeshLambertMaterial({ color: 0x293746 });
+    const body = new Mesh(new BoxGeometry(0.55, 0.75, 0.3), bodyMaterial);
+    body.position.y = 1.05;
+    const head = new Mesh(new BoxGeometry(0.48, 0.48, 0.48), skinMaterial);
+    head.position.y = 1.68;
+    const leftLeg = new Mesh(new BoxGeometry(0.22, 0.7, 0.24), darkMaterial);
+    const rightLeg = leftLeg.clone();
+    leftLeg.position.set(-0.16, 0.35, 0);
+    rightLeg.position.set(0.16, 0.35, 0);
+    avatar.add(body, head, leftLeg, rightLeg);
+    avatar.traverse((part) => {
+      if (part.isMesh) part.castShadow = true;
+    });
+    avatar.userData.target = new Vector3();
+    avatar.userData.name = name;
+    remotePlayerGroup.add(avatar);
+    remotePlayers.set(id, avatar);
+    return avatar;
+  }
+  function removeRemotePlayer(id) {
+    const avatar = remotePlayers.get(id);
+    if (!avatar) return;
+    remotePlayerGroup.remove(avatar);
+    remotePlayers.delete(id);
+  }
+  function clearRemotePlayers() {
+    for (const id of [...remotePlayers.keys()]) removeRemotePlayer(id);
+  }
+  function sendRawPacket(packet) {
+    const serialized = JSON.stringify({ ...packet, from: multiplayer.id, name: playerName() });
+    if (multiplayer.mode === "lan" && multiplayer.socket?.readyState === WebSocket.OPEN) {
+      multiplayer.socket.send(serialized);
+      return true;
+    }
+    if (multiplayer.mode === "webrtc" && multiplayer.channel?.readyState === "open") {
+      if (serialized.length <= 12e3) {
+        multiplayer.channel.send(serialized);
+      } else {
+        const chunkId2 = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+        const total = Math.ceil(serialized.length / 12e3);
+        for (let index = 0; index < total; index++) multiplayer.channel.send(JSON.stringify({
+          type: "chunk",
+          chunkId: chunkId2,
+          index,
+          total,
+          data: serialized.slice(index * 12e3, (index + 1) * 12e3)
+        }));
+      }
+      return true;
+    }
+    return false;
+  }
+  function receiveSerializedPacket(serialized) {
+    let packet;
+    try {
+      packet = typeof serialized === "string" ? JSON.parse(serialized) : serialized;
+    } catch {
+      setMultiplayerStatus("Přijatá multiplayer data jsou poškozená.", multiplayer.active);
+      return;
+    }
+    if (packet.type === "chunk") {
+      const entry = incomingChunks.get(packet.chunkId) || { parts: Array(packet.total), received: 0 };
+      if (entry.parts[packet.index] === void 0) {
+        entry.parts[packet.index] = packet.data;
+        entry.received++;
+      }
+      incomingChunks.set(packet.chunkId, entry);
+      if (entry.received === entry.parts.length) {
+        incomingChunks.delete(packet.chunkId);
+        receiveSerializedPacket(entry.parts.join(""));
+      }
+      return;
+    }
+    handleMultiplayerPacket(packet);
+  }
+  function buildWorldSnapshot(target) {
+    return {
+      type: "snapshot",
+      target,
+      seed: activeWorld.seed,
+      worldName: activeWorld.name,
+      edits,
+      position: { x: player.pos.x, y: player.pos.y, z: player.pos.z }
+    };
+  }
+  function rebuildEditChunks() {
+    editChunks.clear();
+    for (const [blockKey, value] of Object.entries(edits)) {
+      const [x, , z] = blockKey.split("|").map(Number);
+      const id = chunkIdAt(x, z);
+      if (!editChunks.has(id)) editChunks.set(id, /* @__PURE__ */ new Map());
+      editChunks.get(id).set(blockKey, value);
+    }
+  }
+  function applyWorldSnapshot(packet) {
+    WORLD_SEED = seedToNumber(String(packet.seed));
+    edits = packet.edits && typeof packet.edits === "object" ? { ...packet.edits } : {};
+    rebuildEditChunks();
+    world.clear();
+    loadedChunks.clear();
+    animalChunks.clear();
+    villagerChunks.clear();
+    while (animals.length) removeAnimal(animals[animals.length - 1]);
+    while (villagers.length) removeVillager(villagers[villagers.length - 1]);
+    currentChunkX = Infinity;
+    currentChunkZ = Infinity;
+    if (packet.position && [packet.position.x, packet.position.y, packet.position.z].every(Number.isFinite)) {
+      player.pos.set(packet.position.x + 1.5, packet.position.y, packet.position.z + 1.5);
+      player.vel.set(0, 0, 0);
+    }
+    updateChunks(player.pos.x, player.pos.z, true);
+    setMultiplayerStatus(`Připojeno · ${packet.worldName || "sdílený svět"}`, true);
+    startGame();
+  }
+  function applyRemoteBlock(packet) {
+    if (![packet.x, packet.y, packet.z].every(Number.isFinite)) return;
+    if (packet.value !== null && (!Number.isInteger(packet.value) || !PLACEABLE_TYPES.has(packet.value))) return;
+    const x = Math.round(packet.x), y = Math.round(packet.y), z = Math.round(packet.z);
+    if (multiplayer.isHost) saveEdit(x, y, z, packet.value);
+    else {
+      const blockKey = key(x, y, z), id = chunkIdAt(x, z);
+      edits[blockKey] = packet.value;
+      if (!editChunks.has(id)) editChunks.set(id, /* @__PURE__ */ new Map());
+      editChunks.get(id).set(blockKey, packet.value);
+    }
+    const existing = world.get(key(x, y, z));
+    if (packet.value === null) {
+      if (existing) remove(existing, false, false);
+    } else if (existing) {
+      existing.type = packet.value;
+    } else if (loadedChunks.has(chunkIdAt(x, z))) {
+      add(x, y, z, packet.value, false);
+    }
+    rebuildMeshes();
+  }
+  function handleMultiplayerPacket(packet) {
+    if (!packet || typeof packet.type !== "string") return;
+    if (packet.type === "player" && packet.from !== multiplayer.id) {
+      if (![packet.x, packet.y, packet.z, packet.yaw].every(Number.isFinite)) return;
+      const avatar = createRemotePlayer(packet.from || "peer", packet.name);
+      avatar.userData.target.set(packet.x, packet.y, packet.z);
+      avatar.rotation.y = packet.yaw;
+      return;
+    }
+    if (packet.type === "peerLeave") {
+      removeRemotePlayer(packet.id);
+      return;
+    }
+    if (packet.type === "peerJoined" && multiplayer.isHost) {
+      setMultiplayerStatus(`${packet.name || "Hráč"} se připojil · místnost ${multiplayer.roomId}`, true);
+      return;
+    }
+    if (packet.type === "block") {
+      applyRemoteBlock(packet);
+      return;
+    }
+    if (packet.type === "snapshotRequest" && multiplayer.isHost) {
+      sendRawPacket(buildWorldSnapshot(packet.from));
+      return;
+    }
+    if (packet.type === "snapshot" && (!packet.target || packet.target === multiplayer.id)) {
+      applyWorldSnapshot(packet);
+      return;
+    }
+    if (packet.type === "rooms") {
+      renderLanRooms(packet.rooms || []);
+      return;
+    }
+    if (packet.type === "welcome") {
+      multiplayer.id = packet.id;
+      return;
+    }
+    if (packet.type === "hosted") {
+      multiplayer.roomId = packet.roomId;
+      setMultiplayerStatus(`LAN místnost ${packet.roomId} · čekám na hráče`, true);
+      startGame();
+      return;
+    }
+    if (packet.type === "joined") {
+      multiplayer.roomId = packet.roomId;
+      setMultiplayerStatus("Připojuji sdílený svět…", true);
+      sendRawPacket({ type: "snapshotRequest", target: packet.hostId });
+      return;
+    }
+    if (packet.type === "roomClosed") {
+      disconnectMultiplayer("Host ukončil LAN místnost.");
+      return;
+    }
+    if (packet.type === "error") setMultiplayerStatus(packet.message || "Chyba multiplayeru.", multiplayer.active);
+  }
+  function broadcastBlockEdit(x, y, z, value) {
+    if (!multiplayer.active) return;
+    sendRawPacket({ type: "block", x, y, z, value });
+  }
+  function attachDataChannel(channel) {
+    multiplayer.channel = channel;
+    channel.onmessage = (event) => receiveSerializedPacket(event.data);
+    channel.onopen = () => {
+      multiplayer.active = true;
+      setMultiplayerStatus(multiplayer.isHost ? "WebRTC host · hráč připojen" : "WebRTC připojeno", true);
+      if (multiplayer.isHost) sendRawPacket(buildWorldSnapshot());
+      startGame();
+    };
+    channel.onclose = () => disconnectMultiplayer("WebRTC spojení bylo ukončeno.");
+  }
+  function createWebRtcPeer(isHost) {
+    if (!globalThis.RTCPeerConnection) throw new Error("Tento prohlížeč nepodporuje WebRTC.");
+    if (!multiplayer.active && multiplayer.socket) {
+      multiplayer.socket.close();
+      multiplayer.socket = null;
+    }
+    if (multiplayer.peer) multiplayer.peer.close();
+    multiplayer.mode = "webrtc";
+    multiplayer.isHost = isHost;
+    multiplayer.id = isHost ? "host" : `guest-${Math.random().toString(36).slice(2, 8)}`;
+    multiplayer.peer = new RTCPeerConnection({ iceServers: [] });
+    multiplayer.peer.onconnectionstatechange = () => {
+      if (["failed", "disconnected", "closed"].includes(multiplayer.peer?.connectionState)) disconnectMultiplayer("WebRTC spojení selhalo.");
+    };
+    if (isHost) attachDataChannel(multiplayer.peer.createDataChannel("voxel-frontier", { ordered: true }));
+    else multiplayer.peer.ondatachannel = (event) => attachDataChannel(event.channel);
+    return multiplayer.peer;
+  }
+  async function createWebRtcOffer() {
+    try {
+      const peer = createWebRtcPeer(true);
+      await peer.setLocalDescription(await peer.createOffer());
+      await waitForIce(peer);
+      signalCode.value = encodeSignal({
+        kind: "offer",
+        description: peer.localDescription,
+        seed: activeWorld.seed,
+        worldName: activeWorld.name
+      });
+      setMultiplayerStatus("Nabídka vytvořena. Pošli kód druhému hráči.");
+      signalCode.select();
+    } catch (error) {
+      setMultiplayerStatus(`WebRTC: ${error.message}`);
+    }
+  }
+  async function acceptWebRtcOffer() {
+    try {
+      const offer = decodeSignal(signalCode.value);
+      if (offer.kind !== "offer" || !offer.description) throw new Error("Neplatný kód nabídky.");
+      const peer = createWebRtcPeer(false);
+      await peer.setRemoteDescription(offer.description);
+      await peer.setLocalDescription(await peer.createAnswer());
+      await waitForIce(peer);
+      signalCode.value = encodeSignal({ kind: "answer", description: peer.localDescription });
+      setMultiplayerStatus(`Odpověď pro svět „${offer.worldName || "sdílený svět"}“ je připravena. Pošli ji hostiteli.`);
+      signalCode.select();
+    } catch (error) {
+      setMultiplayerStatus(`WebRTC: ${error.message}`);
+    }
+  }
+  async function acceptWebRtcAnswer() {
+    try {
+      const answer = decodeSignal(signalCode.value);
+      if (answer.kind !== "answer" || !answer.description || !multiplayer.peer || !multiplayer.isHost) throw new Error("Neplatná odpověď nebo chybí nabídka.");
+      await multiplayer.peer.setRemoteDescription(answer.description);
+      setMultiplayerStatus("Odpověď přijata, navazuji spojení…");
+    } catch (error) {
+      setMultiplayerStatus(`WebRTC: ${error.message}`);
+    }
+  }
+  function lanSocketUrl() {
+    if (!["http:", "https:"].includes(location.protocol)) throw new Error("Automatická LAN lobby vyžaduje spuštění přes LAN server.");
+    return `${location.protocol === "https:" ? "wss" : "ws"}://${location.host}`;
+  }
+  function connectLan() {
+    if (multiplayer.socket?.readyState === WebSocket.OPEN) return Promise.resolve(multiplayer.socket);
+    return new Promise((resolve, reject) => {
+      let socket;
+      try {
+        socket = new WebSocket(lanSocketUrl());
+      } catch (error) {
+        reject(error);
+        return;
+      }
+      const timeout = setTimeout(() => {
+        socket.close();
+        reject(new Error("LAN server neodpovídá."));
+      }, 4e3);
+      socket.onopen = () => {
+        clearTimeout(timeout);
+        multiplayer.socket = socket;
+        multiplayer.mode = "lan";
+        resolve(socket);
+      };
+      socket.onmessage = (event) => receiveSerializedPacket(event.data);
+      socket.onerror = () => {
+        clearTimeout(timeout);
+        reject(new Error("Na této adrese neběží Voxel Frontier LAN server."));
+      };
+      socket.onclose = () => {
+        if (multiplayer.active && multiplayer.mode === "lan") disconnectMultiplayer("LAN server byl odpojen.");
+      };
+    });
+  }
+  function renderLanRooms(rooms) {
+    lanRooms.replaceChildren();
+    if (!rooms.length) {
+      lanRooms.textContent = "Žádné otevřené LAN místnosti.";
+      return;
+    }
+    for (const room of rooms) {
+      const row = document.createElement("div");
+      row.className = "lan-room";
+      const details = document.createElement("div");
+      const title = document.createElement("strong");
+      title.textContent = room.worldName || "Sdílený svět";
+      const meta = document.createElement("small");
+      meta.textContent = `${room.hostName} · ${room.players}/${room.capacity} hráčů`;
+      details.append(title, meta);
+      const join = document.createElement("button");
+      join.textContent = "Připojit";
+      join.disabled = room.players >= room.capacity;
+      join.onclick = async () => {
+        try {
+          const socket = await connectLan();
+          multiplayer.isHost = false;
+          multiplayer.active = true;
+          socket.send(JSON.stringify({ type: "join", roomId: room.id, name: playerName() }));
+        } catch (error) {
+          setMultiplayerStatus(error.message);
+        }
+      };
+      row.append(details, join);
+      lanRooms.appendChild(row);
+    }
+  }
+  async function refreshLanRooms() {
+    try {
+      const socket = await connectLan();
+      socket.send(JSON.stringify({ type: "list" }));
+      setMultiplayerStatus("LAN server nalezen.");
+    } catch (error) {
+      setMultiplayerStatus(error.message);
+      lanRooms.replaceChildren();
+    }
+  }
+  async function hostLan() {
+    try {
+      const socket = await connectLan();
+      multiplayer.isHost = true;
+      multiplayer.active = true;
+      socket.send(JSON.stringify({
+        type: "host",
+        name: playerName(),
+        worldName: activeWorld.name,
+        seed: activeWorld.seed
+      }));
+    } catch (error) {
+      setMultiplayerStatus(error.message);
+    }
+  }
+  function disconnectMultiplayer(message = "Multiplayer odpojen.") {
+    const socket = multiplayer.socket;
+    const peer = multiplayer.peer;
+    multiplayer.active = false;
+    multiplayer.mode = null;
+    multiplayer.isHost = false;
+    multiplayer.id = null;
+    multiplayer.roomId = null;
+    multiplayer.socket = null;
+    multiplayer.peer = null;
+    multiplayer.channel = null;
+    if (socket && socket.readyState < WebSocket.CLOSING) socket.close();
+    if (peer) peer.close();
+    clearRemotePlayers();
+    incomingChunks.clear();
+    setMultiplayerStatus(message);
+  }
+  function updateMultiplayer(now, dt) {
+    for (const avatar of remotePlayers.values()) avatar.position.lerp(avatar.userData.target, Math.min(1, dt * 12));
+    if (!multiplayer.active || !gameStarted || now - multiplayer.lastPlayerSend < 100) return;
+    multiplayer.lastPlayerSend = now;
+    sendRawPacket({
+      type: "player",
+      x: player.pos.x,
+      y: player.pos.y,
+      z: player.pos.z,
+      yaw: player.yaw
+    });
+  }
   document.documentElement.classList.toggle("touch-device", touchMode);
   function renderHealth() {
     healthHud.replaceChildren();
@@ -29772,7 +30223,7 @@ void main() {
     mainMenu.hidden = true;
     pauseMenu.hidden = true;
     start.style.display = "none";
-    if (!touchMode) renderer.domElement.requestPointerLock();
+    if (!touchMode) renderer.domElement.requestPointerLock().catch(() => {});
   }
   function resetTouchInput() {
     touchMoveX = 0;
@@ -29820,9 +30271,20 @@ void main() {
     location.reload();
   };
   document.querySelector("#resumeGame").onclick = startGame;
-  document.querySelector("#returnToMenu").onclick = showMainMenu;
+  function leaveMultiplayerToMenu() {
+    disconnectMultiplayer();
+    location.reload();
+  }
+  document.querySelector("#returnToMenu").onclick = () => multiplayer.active ? leaveMultiplayerToMenu() : showMainMenu();
+  document.querySelector("#hostLan").onclick = hostLan;
+  document.querySelector("#refreshLan").onclick = refreshLanRooms;
+  document.querySelector("#createOffer").onclick = createWebRtcOffer;
+  document.querySelector("#acceptOffer").onclick = acceptWebRtcOffer;
+  document.querySelector("#acceptAnswer").onclick = acceptWebRtcAnswer;
+  document.querySelector("#disconnectMultiplayer").onclick = leaveMultiplayerToMenu;
   document.querySelector("#pauseWorldName").textContent = activeWorld.name;
   renderWorldList();
+  if (location.protocol === "http:" && /^(localhost|127\.0\.0\.1|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(location.hostname)) refreshLanRooms();
   function setInventoryOpen(open, size = 2, mode = "crafting") {
     inventoryOpen = open;
     if (open && mode === "crafting") setCraftingSize(size);
@@ -29866,6 +30328,9 @@ void main() {
     player.yaw -= e.movementX * 22e-4;
     player.pitch = Math.max(-1.54, Math.min(1.54, player.pitch - e.movementY * 22e-4));
     camera.rotation.set(player.pitch, player.yaw, 0, "YXZ");
+  });
+  renderer.domElement.addEventListener("click", () => {
+    if (!touchMode && gameStarted && !inventoryOpen && !document.pointerLockElement) renderer.domElement.requestPointerLock().catch(() => {});
   });
   addEventListener("keydown", (e) => {
     if (!gameStarted) return;
@@ -30200,6 +30665,7 @@ void main() {
     requestAnimationFrame(loop);
     let dt = Math.min((now - last) / 1e3, 0.04);
     last = now;
+    updateMultiplayer(now, dt);
     const playing = gameplayActive();
     if (gameStarted && (playing || inventoryOpen)) {
       updateFurnaces(dt, now);

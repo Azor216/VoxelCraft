@@ -1,0 +1,16 @@
+{
+  "name": "voxel-frontier",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline voxel survival game with LAN multiplayer",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
