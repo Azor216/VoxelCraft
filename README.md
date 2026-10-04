@@ -4,13 +4,19 @@ Voxelová survival hra fungující jako samostatný `index.html`. Singleplayer a
 
 ## Automatický LAN multiplayer
 
-1. Na počítači hostitele nainstaluj [Node.js 20+](https://nodejs.org/).
-2. V kořeni projektu spusť `npm install`.
-3. Spusť `npm start`.
-4. Hostitel i ostatní hráči otevřou LAN adresu vypsanou v terminálu, například `http://192.168.1.20:8080`.
-5. Hostitel vybere svět a klikne na **Hostovat LAN**. Ostatní ho najdou přes **Obnovit lobby**.
+1. Nainstaluj [Node.js 20+](https://nodejs.org/).
+2. Na Windows spusť dvojklikem `Spustit-LAN-Windows.cmd`, na macOS `Spustit-LAN-macOS.command`.
+3. Launcher sám nainstaluje potřebné komponenty, spustí helper a otevře hru.
+4. Hostitel vybere svět a klikne na **Hostovat LAN**.
+5. Ostatní hráči spustí stejný launcher. Místnost se automaticky objeví v lobby bez zadávání IP.
 
 Server podporuje až 8 hráčů v jedné místnosti. Hostitel sdílí seed a úpravy bloků, zatímco inventář, zdraví a hlad zůstávají každému hráči vlastní.
+
+## Android
+
+Android aplikace automaticky spustí stejný LAN helper uvnitř telefonu. V menu stačí kliknout na **Hostovat LAN**; ostatní spuštěné instance na Windows, macOS nebo Androidu místnost automaticky najdou.
+
+APK se sestavuje v GitHub Actions workflow **Build Android APK**. Po dokončení stáhni artifact `voxel-frontier-lan-android` a nainstaluj `app-debug.apk`. Android může při první instalaci požádat o povolení instalace z tohoto zdroje.
 
 ### Spuštění z GitHub Pages
 

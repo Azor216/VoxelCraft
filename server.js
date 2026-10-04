@@ -2,6 +2,8 @@ const http = require("http");
 const os = require("os");
 const path = require("path");
 const fs = require("fs");
+const dgram = require("dgram");
+const childProcess = require("child_process");
 const { WebSocketServer, WebSocket } = require("ws");
 
 const port = Number(process.env.PORT) || 8080;
@@ -10,6 +12,9 @@ const capacity = 8;
 const clients = new Map();
 const rooms = new Map();
 const signals = new Map();
+const discoveredServers = new Map();
+const serverId = Math.random().toString(36).slice(2);
+const discoveryPort = 41234;
 let nextClientId = 1;
 
 const publicFiles = new Map([
@@ -61,7 +66,7 @@ function cleanText(value, fallback, maxLength) {
 }
 
 function roomList() {
-  return [...rooms.values()].map((room) => ({
+  const localRooms = [...rooms.values()].map((room) => ({
     id: room.id,
     hostName: room.hostName,
     worldName: room.worldName,
@@ -69,6 +74,16 @@ function roomList() {
     players: room.members.size,
     capacity
   }));
+  const now = Date.now();
+  const remoteRooms = [];
+  for (const [id, server] of discoveredServers) {
+    if (now - server.seenAt > 5000) {
+      discoveredServers.delete(id);
+      continue;
+    }
+    for (const room of server.rooms) remoteRooms.push({ ...room, remoteUrl: server.url });
+  }
+  return [...localRooms, ...remoteRooms];
 }
 
 function send(client, packet) {
@@ -228,4 +243,77 @@ server.listen(port, host, () => {
       if (address.family === "IPv4" && !address.internal) console.log(`LAN adresa: http://${address.address}:${port}`);
     }
   }
+  if (process.env.OPEN_BROWSER === "1") {
+    const url = `http://127.0.0.1:${port}`;
+    const command = process.platform === "win32" ? ["cmd", ["/c", "start", "", url]]
+      : process.platform === "darwin" ? ["open", [url]]
+        : ["xdg-open", [url]];
+    const opener = childProcess.spawn(command[0], command[1], { detached: true, stdio: "ignore" });
+    opener.unref();
+  }
+});
+
+const discoverySocket = dgram.createSocket({ type: "udp4", reuseAddr: true });
+
+function localRoomAnnouncements() {
+  return [...rooms.values()].map((room) => ({
+    id: room.id,
+    hostName: room.hostName,
+    worldName: room.worldName,
+    seed: room.seed,
+    players: room.members.size,
+    capacity
+  }));
+}
+
+function announceRooms(targetAddress = "255.255.255.255", targetPort = discoveryPort) {
+  const message = Buffer.from(JSON.stringify({
+    app: "voxel-frontier",
+    version: 1,
+    type: "announce",
+    serverId,
+    port,
+    rooms: localRoomAnnouncements()
+  }));
+  discoverySocket.send(message, targetPort, targetAddress, (error) => {
+    if (error && error.code !== "EACCES" && error.code !== "ENETUNREACH") {
+      console.warn("LAN discovery:", error.message);
+    }
+  });
+}
+
+discoverySocket.on("message", (message, remote) => {
+  let packet;
+  try {
+    packet = JSON.parse(message.toString());
+  } catch {
+    return;
+  }
+  if (packet.app !== "voxel-frontier" || packet.version !== 1) return;
+  if (packet.type === "discover") {
+    announceRooms(remote.address, remote.port);
+    return;
+  }
+  if (packet.type !== "announce" || packet.serverId === serverId || !Array.isArray(packet.rooms)) return;
+  const remotePort = Number(packet.port);
+  if (!Number.isInteger(remotePort) || remotePort < 1 || remotePort > 65535) return;
+  discoveredServers.set(packet.serverId, {
+    seenAt: Date.now(),
+    url: `http://${remote.address}:${remotePort}`,
+    rooms: packet.rooms.slice(0, 32).map((room) => ({
+      id: cleanText(room.id, "", 12),
+      hostName: cleanText(room.hostName, "Host", 20),
+      worldName: cleanText(room.worldName, "Sdílený svět", 32),
+      seed: cleanText(String(room.seed ?? ""), "0", 40),
+      players: Math.max(1, Math.min(capacity, Number(room.players) || 1)),
+      capacity
+    })).filter((room) => room.id)
+  });
+});
+
+discoverySocket.on("error", (error) => console.warn("LAN discovery socket:", error.message));
+discoverySocket.bind(discoveryPort, "0.0.0.0", () => {
+  discoverySocket.setBroadcast(true);
+  announceRooms();
+  setInterval(announceRooms, 1500).unref();
 });

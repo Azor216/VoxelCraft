@@ -29650,6 +29650,7 @@ void main() {
     id: null,
     roomId: null,
     socket: null,
+    socketEndpoint: null,
     peer: null,
     channel: null,
     lastPlayerSend: 0
@@ -29986,7 +29987,14 @@ void main() {
       setMultiplayerStatus(`WebRTC: ${error.message}`);
     }
   }
-  function lanSocketUrl() {
+  function lanSocketUrl(serverUrl = null) {
+    if (serverUrl) {
+      const url = new URL(serverUrl);
+      if (!/^https?:$/.test(url.protocol)) throw new Error("Neplatná adresa LAN serveru.");
+      const localHost = /^(localhost|127\.0\.0\.1|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(url.hostname) || url.hostname.endsWith(".local");
+      if (!localHost) throw new Error("LAN server musí být v místní síti.");
+      return `${url.protocol === "https:" ? "wss" : "ws"}://${url.host}`;
+    }
     if (!["http:", "https:"].includes(location.protocol)) throw new Error("Automatická LAN lobby vyžaduje spuštění přes LAN server.");
     return `${location.protocol === "https:" ? "wss" : "ws"}://${location.host}`;
   }
@@ -30034,12 +30042,16 @@ void main() {
       socket.send(JSON.stringify({ type, requestId, ...data }));
     });
   }
-  function connectLan() {
-    if (multiplayer.socket?.readyState === WebSocket.OPEN) return Promise.resolve(multiplayer.socket);
+  function connectLan(serverUrl = null) {
+    const endpoint = lanSocketUrl(serverUrl);
+    if (multiplayer.socket?.readyState === WebSocket.OPEN && multiplayer.socketEndpoint === endpoint) return Promise.resolve(multiplayer.socket);
+    if (multiplayer.socket && multiplayer.socket.readyState < WebSocket.CLOSING) multiplayer.socket.close();
+    multiplayer.socket = null;
+    multiplayer.socketEndpoint = null;
     return new Promise((resolve, reject) => {
       let socket;
       try {
-        socket = new WebSocket(lanSocketUrl());
+        socket = new WebSocket(endpoint);
       } catch (error) {
         reject(error);
         return;
@@ -30051,6 +30063,7 @@ void main() {
       socket.onopen = () => {
         clearTimeout(timeout);
         multiplayer.socket = socket;
+        multiplayer.socketEndpoint = endpoint;
         resolve(socket);
       };
       socket.onmessage = (event) => receiveSerializedPacket(event.data);
@@ -30083,7 +30096,7 @@ void main() {
       join.disabled = room.players >= room.capacity;
       join.onclick = async () => {
         try {
-          const socket = await connectLan();
+          const socket = await connectLan(room.remoteUrl || null);
           multiplayer.mode = "lan";
           multiplayer.isHost = false;
           multiplayer.active = true;
@@ -30143,6 +30156,7 @@ void main() {
     multiplayer.id = null;
     multiplayer.roomId = null;
     multiplayer.socket = null;
+    multiplayer.socketEndpoint = null;
     multiplayer.peer = null;
     multiplayer.channel = null;
     if (socket && socket.readyState < WebSocket.CLOSING) socket.close();
@@ -30377,6 +30391,9 @@ void main() {
   pagesLan.hidden = !runningOnHostedHttps();
   if (lanServerLikelyAvailable()) refreshLanRooms();
   else if (runningOnHostedHttps()) setMultiplayerStatus("Spusť LAN server, zadej jeho IP adresu a klikni na Otevřít LAN.");
+  setInterval(() => {
+    if (lanServerLikelyAvailable() && !gameStarted && !multiplayer.active) refreshLanRooms();
+  }, 2e3);
   function setInventoryOpen(open, size = 2, mode = "crafting") {
     inventoryOpen = open;
     if (open && mode === "crafting") setCraftingSize(size);
