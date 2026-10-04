@@ -12,11 +12,9 @@ Voxelová survival hra fungující jako samostatný `index.html`. Singleplayer a
 
 Server podporuje až 8 hráčů v jedné místnosti. Hostitel sdílí seed a úpravy bloků, zatímco inventář, zdraví a hlad zůstávají každému hráči vlastní.
 
-### Přechod z GitHub Pages
+### Spuštění z GitHub Pages
 
-Na GitHub Pages klikni na **Spustit / připojit LAN**. Hostitel zadá `localhost:8080`; ostatní hráči zadají LAN adresu vypsanou serverem, například `192.168.1.20:8080`. Hra se otevře přímo z lokálního serveru, kde funguje automatická lobby i krátké WebRTC kódy.
-
-Prohlížeč nedovoluje HTTPS stránce z GitHub Pages připojit se přímo k nezabezpečenému LAN WebSocketu. Přechod na lokální adresu toto bezpečnostní omezení řeší.
+Na GitHub Pages zadej do pole LAN adresu vypsanou serverem a klikni na **Otevřít LAN**. Hra přejde z HTTPS Pages na místní adresu hostitele, protože prohlížeče z bezpečnostních důvodů nedovolují HTTPS stránce přímé nezabezpečené WebSocket spojení do lokální sítě. Hostitel i ostatní hráči musí mít přístup ke stejné LAN adrese.
 
 ## WebRTC připojení
 
