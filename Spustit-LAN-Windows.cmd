@@ -1,10 +1,23 @@
 @echo off
 setlocal
-cd /d "%~dp0"
+title Voxel Frontier LAN
+set "APPDIR=%~dp0"
+if not exist "%APPDIR%server.js" (
+  set "APPDIR=%LOCALAPPDATA%\VoxelFrontierLAN"
+  echo Pripravuji Voxel Frontier LAN...
+  powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='Stop'; $ProgressPreference='SilentlyContinue'; $app=$env:LOCALAPPDATA+'\VoxelFrontierLAN'; $zip=$env:TEMP+'\voxel-frontier-'+$PID+'.zip'; $unpack=$env:TEMP+'\voxel-frontier-'+$PID; New-Item -ItemType Directory -Force -Path $app | Out-Null; Invoke-WebRequest 'https://github.com/Azor216/VoxelCraft/archive/refs/heads/master.zip' -OutFile $zip; Expand-Archive -LiteralPath $zip -DestinationPath $unpack -Force; Copy-Item -LiteralPath ($unpack+'\VoxelCraft-master\index.html'),($unpack+'\VoxelCraft-master\server.js'),($unpack+'\VoxelCraft-master\package.json'),($unpack+'\VoxelCraft-master\package-lock.json') -Destination $app -Force; Remove-Item -LiteralPath $zip -Force; Remove-Item -LiteralPath $unpack -Recurse -Force"
+  if errorlevel 1 (
+    echo Nepodarilo se stahnout LAN server. Zkontroluj internetove pripojeni.
+    pause
+    exit /b 1
+  )
+)
+cd /d "%APPDIR%"
 where node >nul 2>nul
 if errorlevel 1 (
   echo Pro LAN je potreba Node.js 20 nebo novejsi.
-  echo Stahni ho z https://nodejs.org/
+  echo Oteviram stranku pro stazeni Node.js...
+  start "" "https://nodejs.org/"
   pause
   exit /b 1
 )

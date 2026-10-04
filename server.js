@@ -25,6 +25,11 @@ const publicFiles = new Map([
 
 const server = http.createServer((request, response) => {
   const url = new URL(request.url, `http://${request.headers.host || "localhost"}`);
+  if (url.pathname === "/health") {
+    response.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" });
+    response.end(JSON.stringify({ app: "voxel-frontier", status: "ok" }));
+    return;
+  }
   const publicFile = publicFiles.get(url.pathname);
   if (!publicFile) {
     response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
@@ -236,6 +241,39 @@ webSocketServer.on("connection", (socket) => {
   socket.on("error", (error) => console.warn(`WebSocket ${client.id}:`, error.message));
 });
 
+function openBrowser() {
+  const url = `http://127.0.0.1:${port}`;
+  const command = process.platform === "win32" ? ["cmd", ["/c", "start", "", url]]
+    : process.platform === "darwin" ? ["open", [url]]
+      : ["xdg-open", [url]];
+  const opener = childProcess.spawn(command[0], command[1], { detached: true, stdio: "ignore" });
+  opener.unref();
+}
+
+server.on("error", (error) => {
+  if (error.code !== "EADDRINUSE") throw error;
+  http.get(`http://127.0.0.1:${port}/health`, (response) => {
+    let body = "";
+    response.setEncoding("utf8");
+    response.on("data", (chunk) => body += chunk);
+    response.on("end", () => {
+      try {
+        const health = JSON.parse(body);
+        if (health.app !== "voxel-frontier") throw new Error();
+        console.log(`Voxel Frontier už běží na http://localhost:${port}`);
+        if (process.env.OPEN_BROWSER === "1") openBrowser();
+        process.exit(0);
+      } catch {
+        console.error(`Port ${port} používá jiná aplikace. Ukonči ji nebo nastav jiný PORT.`);
+        process.exit(1);
+      }
+    });
+  }).on("error", () => {
+    console.error(`Port ${port} používá jiná aplikace. Ukonči ji nebo nastav jiný PORT.`);
+    process.exit(1);
+  });
+});
+
 server.listen(port, host, () => {
   console.log(`Voxel Frontier LAN server běží na http://localhost:${port}`);
   for (const interfaces of Object.values(os.networkInterfaces())) {
@@ -243,14 +281,7 @@ server.listen(port, host, () => {
       if (address.family === "IPv4" && !address.internal) console.log(`LAN adresa: http://${address.address}:${port}`);
     }
   }
-  if (process.env.OPEN_BROWSER === "1") {
-    const url = `http://127.0.0.1:${port}`;
-    const command = process.platform === "win32" ? ["cmd", ["/c", "start", "", url]]
-      : process.platform === "darwin" ? ["open", [url]]
-        : ["xdg-open", [url]];
-    const opener = childProcess.spawn(command[0], command[1], { detached: true, stdio: "ignore" });
-    opener.unref();
-  }
+  if (process.env.OPEN_BROWSER === "1") openBrowser();
 });
 
 const discoverySocket = dgram.createSocket({ type: "udp4", reuseAddr: true });

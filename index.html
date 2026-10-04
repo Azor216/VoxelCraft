@@ -30030,6 +30030,18 @@ void main() {
     target.hash = "";
     location.href = target.href;
   }
+  function downloadLanLauncher() {
+    const agent = navigator.userAgent;
+    if (/Android/i.test(agent)) {
+      location.href = "https://github.com/Azor216/VoxelCraft/releases/download/lan-v1.0.0/VoxelFrontier-LAN.apk";
+      return;
+    }
+    if (/Macintosh|Mac OS X/i.test(agent)) {
+      location.href = "https://github.com/Azor216/VoxelCraft/releases/download/lan-v1.0.0/Spustit-LAN-macOS.command";
+      return;
+    }
+    location.href = "https://github.com/Azor216/VoxelCraft/releases/download/lan-v1.0.0/Spustit-LAN-Windows.cmd";
+  }
   async function exchangeSignal(type, data) {
     const socket = await connectLan();
     const requestId = `s${nextSignalRequest++}`;
@@ -30127,9 +30139,8 @@ void main() {
   }
   async function hostLan() {
     if (runningOnHostedHttps()) {
-      pagesLan.hidden = false;
-      setMultiplayerStatus("Na Pages nejdřív otevři místní LAN server.");
-      lanServerAddress.focus();
+      setMultiplayerStatus("Po stažení spusť launcher. Server a hra se otevřou automaticky.");
+      downloadLanLauncher();
       return;
     }
     try {
@@ -30390,7 +30401,10 @@ void main() {
   renderWorldList();
   pagesLan.hidden = !runningOnHostedHttps();
   if (lanServerLikelyAvailable()) refreshLanRooms();
-  else if (runningOnHostedHttps()) setMultiplayerStatus("Spusť LAN server, zadej jeho IP adresu a klikni na Otevřít LAN.");
+  else if (runningOnHostedHttps()) {
+    document.querySelector("#hostLan").textContent = /Android/i.test(navigator.userAgent) ? "Stáhnout Android LAN" : "Stáhnout a spustit LAN";
+    setMultiplayerStatus("Tlačítko stáhne launcher pro toto zařízení. Pro připojení k hostiteli můžeš také zadat jeho IP.");
+  }
   setInterval(() => {
     if (lanServerLikelyAvailable() && !gameStarted && !multiplayer.active) refreshLanRooms();
   }, 2e3);
